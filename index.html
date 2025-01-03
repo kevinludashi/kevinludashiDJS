@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -180,18 +181,13 @@
         </div>
 
         <div class="countdown" id="countdown2">
-            <h2 style="font-size: 20px;">距 腊月廿三（双）</h2><!-- 增加新倒计时这里要增加修改 -->
+            <h2 style="font-size: 20px;">距 腊八节</h2><!-- 增加新倒计时这里要增加修改 -->
             <p id="time2" style="font-size: 25px;"></p><!-- 增加新倒计时这里要增加修改 -->
         </div>
-
-        <div class="countdown" id="countdown3">
-            <h2 style="font-size: 20px;">距 腊八节</h2><!-- 增加新倒计时这里要增加修改 -->
-            <p id="time3" style="font-size: 25px;"></p><!-- 增加新倒计时这里要增加修改 -->
-        </div>
 		
-		<div class="countdown" id="countdown4">
+		<div class="countdown" id="countdown3">
 		    <h2 style="font-size: 20px;">距 除夕</h2><!-- 增加新倒计时这里要增加修改 -->
-		    <p id="time4" style="font-size: 25px;"></p> <!-- 增加新倒计时这里要增加修改 -->
+		    <p id="time3" style="font-size: 25px;"></p> <!-- 增加新倒计时这里要增加修改 -->
 		</div>
     </div>
 
@@ -217,9 +213,8 @@
         createParticles();
 
         const holidays1 = [4, 5, 12, 18, 19]; // 增加新倒计时这里要增加修改
-        const holidays2 = [4, 5, 11, 12, 18, 19];// 增加新倒计时这里要增加修改
-		const holidays3 = [0,];// 增加新倒计时这里要增加修改
-        const holidays4 = [0,];// 增加新倒计时这里要增加修改
+		const holidays2 = [0,];// 增加新倒计时这里要增加修改
+        const holidays3 = [0,];// 增加新倒计时这里要增加修改
 
         function getNextWorkdayCountdown(targetDate, holidays) {
             let currentDate = new Date();
@@ -248,9 +243,8 @@
 
         function updateCountdowns() {
             document.getElementById('time1').innerText = getNextWorkdayCountdown('2025-01-22T23:59:59', holidays1);// 增加新倒计时这里要增加修改
-            document.getElementById('time2').innerText = getNextWorkdayCountdown('2025-01-22T23:59:59', holidays2);// 增加新倒计时这里要增加修改
-			document.getElementById('time3').innerText = getNextWorkdayCountdown('2025-01-22T23:59:59', holidays3);// 增加新倒计时这里要增加修改
-            document.getElementById('time4').innerText = getNextWorkdayCountdown('2025-01-07T23:59:59', holidays4);// 增加新倒计时这里要增加修改
+			document.getElementById('time2').innerText = getNextWorkdayCountdown('2025-01-07T23:59:59', holidays2);// 增加新倒计时这里要增加修改
+            document.getElementById('time3').innerText = getNextWorkdayCountdown('2025-01-28T23:59:59', holidays3);// 增加新倒计时这里要增加修改
         }
 
         setInterval(updateCountdowns, 1000);
