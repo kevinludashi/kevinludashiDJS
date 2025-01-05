@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -85,8 +86,8 @@
             overflow-y: auto;
             max-height: calc(100vh - 100px); /* 保证倒计时区域的最大高度，不超出视窗减去页脚的空间 */
             padding-right: 20px;
-			padding-bottom: 75px; /* 给容器底部留出空间 */
-			margin-bottom: 75px; /* 确保容器的底部有额外空间 */
+			padding-bottom: 60px; /* 给容器底部留出空间 */
+			margin-bottom: 60px; /* 确保容器的底部有额外空间 */
         }
 		
 
@@ -96,6 +97,7 @@
 
         .countdown {
             padding: 20px; /* 设置元素的内边距为20像素 */
+			margin: 5px 0; /* 设置元素上下间距为10.5px，左右间距为0 */
             border: 1px solid white; /* 设置元素的边框为1像素宽，白色实线 */
             border-radius: 20px; /* 设置元素的边框圆角为20像素 */
             background-color: rgba(255, 255, 255, 0.2); /* 设置元素的背景颜色为带有20%透明度的白色 */
@@ -104,7 +106,7 @@
             box-sizing: border-box; /* 设置元素的盒模型为边框盒，包括边框和内边距在内的宽度 */
             width: 100%; /* 设置元素的宽度为100% */
             max-width: 400px; /* 设置元素的最大宽度为400像素 */
-            text-align: center; /* 设置元素内的文本居中对齐 */
+            text-align: center; /* 设置元素内的文本居中对齐 */1[]
         }
 
 
@@ -151,7 +153,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 10px 0;
+            padding: 2px 0;
             background-color: rgba(0, 0, 0, 0.0);
         }
 
@@ -175,20 +177,40 @@
 
     <div class="container">
 		
+		<!-- 新增自定义倒计时表单 -->
+		        <div class="countdown" id="countdown-custom">
+		            <h2 style="font-size: 20px;">自定义倒计时</h2>
+		            <input type="date" id="custom-date" value="">
+		            <input type="time" id="custom-time" value="00:00:00">
+		            <p id="custom-time-left"  style="font-size: 20px;"></p>
+		        </div>
+		
         <div class="countdown" id="countdown1">
-            <h2 style="font-size: 20px;">距 腊月廿三（单）</h2><!-- 增加新倒计时这里要增加修改 -->
+            <h2 style="font-size: 20px;">距 25年1月7日 腊八节</h2><!-- 增加新倒计时这里要增加修改 -->
             <p id="time1" style="font-size: 25px;"></p><!-- 增加新倒计时这里要增加修改 -->
         </div>
 
         <div class="countdown" id="countdown2">
-            <h2 style="font-size: 20px;">距 腊八节</h2><!-- 增加新倒计时这里要增加修改 -->
+            <h2 style="font-size: 20px;">距 25年1月22日 北方小年</h2><!-- 增加新倒计时这里要增加修改 -->
             <p id="time2" style="font-size: 25px;"></p><!-- 增加新倒计时这里要增加修改 -->
         </div>
 		
 		<div class="countdown" id="countdown3">
-		    <h2 style="font-size: 20px;">距 除夕</h2><!-- 增加新倒计时这里要增加修改 -->
+		    <h2 style="font-size: 20px;">距 225年1月28日 除夕</h2><!-- 增加新倒计时这里要增加修改 -->
 		    <p id="time3" style="font-size: 25px;"></p> <!-- 增加新倒计时这里要增加修改 -->
 		</div>
+		
+		<div class="countdown" id="countdown4">
+		    <h2 style="font-size: 20px;">距 25年2月5日 初八</h2><!-- 增加新倒计时这里要增加修改 -->
+		    <p id="time4" style="font-size: 25px;"></p> <!-- 增加新倒计时这里要增加修改 -->
+		</div>
+		
+		<div class="countdown" id="countdown5">
+		    <h2 style="font-size: 20px;">距 25年2月12日 元宵节</h2><!-- 增加新倒计时这里要增加修改 -->
+		    <p id="time5" style="font-size: 25px;"></p> <!-- 增加新倒计时这里要增加修改 -->
+		</div>
+		
+		
     </div>
 
     <footer>
@@ -196,60 +218,45 @@
     </footer>
 
     <script>
-        function createParticles() {
-            const particleContainer = document.getElementById('particle-container');
-            const particlesCount = 100;
+        function getNormalCountdown(targetDate) {
+                    let currentDate = new Date();
+                    let countDownDate = new Date(targetDate);
+                
+                    const timeDiff = countDownDate - currentDate;
+                    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+                
+                    return `${days} 天${hours} 时 ${minutes} 分${seconds} 秒`;
+                }
+                
+                function updateCountdowns() {
+                    document.getElementById('time1').innerText = getNormalCountdown('2025-01-07T00:00:00');
+                    document.getElementById('time2').innerText = getNormalCountdown('2025-01-22T00:00:00');
+                    document.getElementById('time3').innerText = getNormalCountdown('2025-01-28T00:00:00');
+                	document.getElementById('time4').innerText = getNormalCountdown('2025-02-05T00:00:00');
+                	document.getElementById('time5').innerText = getNormalCountdown('2025-02-12T00:00:00');
+                }
+        
+                // 更新自定义倒计时的函数
+                function updateCustomCountdown() {
+                    const customDate = document.getElementById('custom-date').value;
+                    const customTime = document.getElementById('custom-time').value;
+                    const customDateTime = `${customDate}T${customTime}`;
+                    document.getElementById('custom-time-left').innerText = getNormalCountdown(customDateTime);
+                }
+        
+                // 设置定时器更新自定义倒计时和现有倒计时
+                setInterval(function() {
+                    updateCountdowns(); // 更新现有倒计时
+                    updateCustomCountdown(); // 更新自定义倒计时
+                }, 1000);
+        
+                // 初始化时也更新一次自定义倒计时和现有倒计时
+                updateCountdowns();
+                updateCustomCountdown();
 
-            for (let i = 0; i < particlesCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.top = `${Math.random() * window.innerHeight}px`;
-                particle.style.left = `${Math.random() * window.innerWidth}px`;
-                particle.style.animationDuration = `${Math.random() * 2 + 1}s`;
-                particleContainer.appendChild(particle);
-            }
-        }
-
-        createParticles();
-
-        const holidays1 = [4, 5, 12, 18, 19]; // 增加新倒计时这里要增加修改
-		const holidays2 = [0,];// 增加新倒计时这里要增加修改
-        const holidays3 = [0,];// 增加新倒计时这里要增加修改
-
-        function getNextWorkdayCountdown(targetDate, holidays) {
-            let currentDate = new Date();
-            let countDownDate = new Date(targetDate);
-
-            while (isHolidayOrWeekend(countDownDate, holidays)) {
-                countDownDate.setDate(countDownDate.getDate() - 1);
-            }
-
-            const timeDiff = countDownDate - currentDate;
-            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
-            return `${days} 天 ${hours} 时 ${minutes} 钟 ${seconds} 秒`;
-        }
-
-        function isHolidayOrWeekend(date, holidays) {
-            const dayOfWeek = date.getDay();
-            const dayOfMonth = date.getDate();
-
-            if (dayOfWeek === 0 || dayOfWeek === 6) return true;
-            return holidays.includes(dayOfMonth);
-        }
-
-        function updateCountdowns() {
-            document.getElementById('time1').innerText = getNextWorkdayCountdown('2025-01-22T23:59:59', holidays1);// 增加新倒计时这里要增加修改
-			document.getElementById('time2').innerText = getNextWorkdayCountdown('2025-01-07T23:59:59', holidays2);// 增加新倒计时这里要增加修改
-            document.getElementById('time3').innerText = getNextWorkdayCountdown('2025-01-28T23:59:59', holidays3);// 增加新倒计时这里要增加修改
-        }
-
-        setInterval(updateCountdowns, 1000);
-
-        updateCountdowns();
     </script>
 </body>
 </html>
